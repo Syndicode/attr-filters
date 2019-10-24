@@ -1,8 +1,10 @@
 # AttrFilters
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/attr_filters`. To experiment with that code, run `bin/console` for an interactive prompt.
+Light weight gem for filtering PORO attributes with zero dependencies.
 
-TODO: Delete this and the text above, and describe your gem
+## Description
+
+AttrFilters brings simple DSL for adding filters to your PORO attributes.
 
 ## Installation
 
@@ -22,7 +24,49 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can add filters like that:
+
+```ruby
+class SingupForm
+  include AttrFilters
+
+  attr_accessor :email, :first_name, :last_name, :zip
+
+  filters :email, trim: true, downcase: true
+  filters :first_name, :last_name, trim: true, letters_only: true
+  filters :zip, trim: true, numbers_only: true
+end
+```
+
+And call `#filter!` method to apply filters for attributes values
+
+
+```ruby
+form = SingupForm.new
+
+form.email      = "  mike.dou@example.com "
+form.first_name = "Mike 123"
+form.last_name  = " Dou"
+form.zip        = "abc12345"
+
+form.filter!
+
+form.email        # => "mike.dou@example.com"
+form.first_name   # => "Mike"
+form.last_name    # => "Dou"
+form.zip          # => "12345"
+```
+
+## Available Filters
+
+ - `trim` - removes leading and trailing whitespaces
+ - `downcase` - replaces all upcase letters to lowercase ones
+ - `upcase` - replaces all lowercase letters to upcase ones
+ - `capitalize` - upcases first letter and lowercase others
+ - `squeeze` - removes duplicating whitespaces
+ - `numbers_only` - removes non digits characters
+ - `letters_only` - removes non letter characters
+
 
 ## Development
 
