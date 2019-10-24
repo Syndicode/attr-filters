@@ -1,5 +1,7 @@
 # AttrFilters
 
+[![Build Status](https://travis-ci.com/Syndicode/attr-filters.svg?branch=master)](https://travis-ci.com/Syndicode/attr-filters)
+
 Light weight gem for filtering PORO attributes with zero dependencies.
 
 ## Description
