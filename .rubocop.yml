@@ -1,0 +1,10 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+Style/BlockDelimiters:
+  Exclude:
+    - "spec/**/*"
