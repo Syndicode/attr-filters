@@ -1,10 +1,17 @@
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/BlockDelimiters:
+  Exclude:
+    - "spec/**/*"
+
 Metrics/LineLength:
   Max: 120
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
-Style/BlockDelimiters:
-  Exclude:
-    - "spec/**/*"
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Documentation:
+  Enabled: false

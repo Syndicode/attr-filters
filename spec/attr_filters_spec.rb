@@ -1,99 +1,108 @@
 # frozen_string_literal: true
 
 RSpec.describe AttrFilters do
+  context "trim filter" do
+    it "should call trim filter" do
+      form_class = Struct.new(:user_name, keyword_init: true) do
+        include AttrFilters
+
+        filters :user_name, trim: true
+      end
+      form = form_class.new(user_name: "  Mike Dou  ")
+
+      expect(AttrFilters::Filters::LIST[:trim]).to receive(:call).with("  Mike Dou  ")
+
+      form.filter!
+    end
+  end
+
   context "capitalize filter" do
-    it "should capitalize spaces" do
+    it "should call capitalize filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, capitalize: true
       end
-
       form = form_class.new(user_name: "mike dou")
 
-      form.filter!
+      expect(AttrFilters::Filters::LIST[:capitalize]).to receive(:call).with("mike dou")
 
-      expect(form.user_name).to eq("Mike dou")
+      form.filter!
     end
   end
 
   context "squeeze filter" do
-    it "should squeeze spaces" do
+    it "should call squeeze filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, squeeze: true
       end
+      form = form_class.new(user_name: "Mike  Dou")
 
-      form = form_class.new(user_name: "Mike   Dou")
+      expect(AttrFilters::Filters::LIST[:squeeze]).to receive(:call).with("Mike  Dou")
 
       form.filter!
-
-      expect(form.user_name).to eq("Mike Dou")
     end
   end
 
   context "letters_only filter" do
-    it "should remove all not numbers characters" do
+    it "should call letters_only filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, letters_only: true
       end
-
       form = form_class.new(user_name: "Mike 123 Dou")
 
-      form.filter!
+      expect(AttrFilters::Filters::LIST[:letters_only]).to receive(:call).with("Mike 123 Dou")
 
-      expect(form.user_name).to eq("Mike Dou")
+      form.filter!
     end
   end
 
   context "numbers_only filter" do
-    it "should remove all not numbers characters" do
+    it "should call numbers_only filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, numbers_only: true
       end
-
       form = form_class.new(user_name: "Mike 123 Dou")
 
-      form.filter!
+      expect(AttrFilters::Filters::LIST[:numbers_only]).to receive(:call).with("Mike 123 Dou")
 
-      expect(form.user_name).to eq("123")
+      form.filter!
     end
   end
 
   context "upcase filter" do
-    it "should upcase value" do
+    it "should call upcase filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, upcase: true
       end
-
       form = form_class.new(user_name: "Mike Dou")
 
-      form.filter!
+      expect(AttrFilters::Filters::LIST[:upcase]).to receive(:call).with("Mike Dou")
 
-      expect(form.user_name).to eq("MIKE DOU")
+      form.filter!
     end
   end
 
   context "downcase filter" do
-    it "should downcase value" do
+    it "should call downcase filter" do
       form_class = Struct.new(:user_name, keyword_init: true) do
         include AttrFilters
 
         filters :user_name, downcase: true
       end
-
       form = form_class.new(user_name: "Mike Dou")
 
-      form.filter!
+      expect(AttrFilters::Filters::LIST[:downcase]).to receive(:call).with("Mike Dou")
 
-      expect(form.user_name).to eq("mike dou")
+      form.filter!
     end
   end
 
@@ -116,49 +125,6 @@ RSpec.describe AttrFilters do
       expect {
         form_class.class_eval { filters :user_name, unknown_filter: true }
       }.to raise_error(AttrFilters::UnknownFilterError)
-    end
-
-  end
-
-  context "trim filter" do
-    it "should trim spaces before" do
-      form_class = Struct.new(:user_name, keyword_init: true) do
-        include AttrFilters
-
-        filters :user_name, trim: true
-      end
-
-      form = form_class.new(user_name: "  Mike Dou")
-
-      form.filter!
-
-      expect(form.user_name).to eq("Mike Dou")
-    end
-
-    it "should trim spaces after" do
-      form_class = Struct.new(:user_name, keyword_init: true) do
-        include AttrFilters
-
-        filters :user_name, trim: true
-      end
-      form = form_class.new(user_name: "Mike Dou  ")
-
-      form.filter!
-
-      expect(form.user_name).to eq("Mike Dou")
-    end
-
-    it "should trim spaces both" do
-      form_class = Struct.new(:user_name, keyword_init: true) do
-        include AttrFilters
-
-        filters :user_name, trim: true
-      end
-      form = form_class.new(user_name: "  Mike Dou  ")
-
-      form.filter!
-
-      expect(form.user_name).to eq("Mike Dou")
     end
   end
 end
