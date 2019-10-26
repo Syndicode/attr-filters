@@ -14,7 +14,7 @@ module AttrFilters
     end
 
     def _registered_filters
-      @_registered_filters
+      @_registered_filters || {}
     end
 
     private

@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 RSpec.describe AttrFilters do
+  context "filters not added" do
+    it "should do nothing" do
+      form_class = Struct.new(:user_name) do
+        include AttrFilters
+      end
+      form = form_class.new("Mike Dou")
+
+      form.filter!
+
+      expect(form.user_name).to eq("Mike Dou")
+    end
+  end
+
   context "trim filter" do
     it "should call trim filter" do
       form_class = Struct.new(:user_name) do

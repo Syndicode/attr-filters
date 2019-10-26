@@ -6,9 +6,21 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (6.0.0)
+      activesupport (= 6.0.0)
+    activesupport (6.0.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+      zeitwerk (~> 2.1, >= 2.1.8)
     ast (2.4.0)
+    concurrent-ruby (1.1.5)
     diff-lcs (1.3)
+    i18n (1.7.0)
+      concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.3)
+    minitest (5.12.2)
     parallel (1.18.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
@@ -35,12 +47,17 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    zeitwerk (2.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel (= 6.0.0)
   attr_filters!
   bundler (~> 2.0)
   rake (~> 10.0)

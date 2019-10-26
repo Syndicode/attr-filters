@@ -10,6 +10,7 @@ module AttrFilters
   autoload :FiltersMacro, "attr_filters/filters_macro"
   autoload :InstanceMethods, "attr_filters/instance_methods"
   autoload :Filters, "attr_filters/filters"
+  autoload :ActiveModel, "attr_filters/active_model"
 
   def self.included(base)
     base.extend(FiltersMacro)
