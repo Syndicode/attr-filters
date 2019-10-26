@@ -4,7 +4,7 @@ module AttrFilters
   module ActiveModel
     if AttrFilters::Utils.satisfied_spec?("activemodel")
       require "active_model"
-      require "active_model/Validations/filters_validator"
+      require "active_model/validations/filters_validator"
     end
 
     def self.included(base)
