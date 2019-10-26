@@ -3,11 +3,15 @@
 [![Build Status](https://travis-ci.com/Syndicode/attr-filters.svg?branch=master)](https://travis-ci.com/Syndicode/attr-filters)
 [![Gem Version](https://badge.fury.io/rb/attr_filters.svg)](https://badge.fury.io/rb/attr_filters)
 
-Light weight gem for filtering PORO attributes with zero dependencies.
+Light weight gem for filtering PORO (Plain Old Ruby Objects) attributes with zero dependencies.
 
 ## Description
 
-AttrFilters brings simple DSL for adding filters to your PORO attributes.
+AttrFilters brings simple DSL for adding filters to your PORO attributes.<br>
+Simple way to integration with Rails validation.
+
+## Requirements
+  - Ruby >= 2.4
 
 ## Installation
 
@@ -58,6 +62,48 @@ form.email        # => "mike.dou@example.com"
 form.first_name   # => "Mike"
 form.last_name    # => "Dou"
 form.zip          # => "12345"
+```
+
+## Integration with Rails
+### Requirements
+  - ActiveModel >= 4.2.0
+
+For Rails integration you should include `AttrFilters::ActiveModel`.<br>
+After that you can add filters using `validates` method.
+
+```ruby
+class SingupForm
+  include ActiveModel::Model
+  include AttrFilters::ActiveModel
+
+  attr_accessor :user_name
+
+  validates :user_name, presence: true, filters: { trim: true, squeeze: true }
+end
+
+form = SingupForm.new(user_name: "  Mike   Dou  ")
+form.filter!
+form.user_name  # => "Mike Dou"
+```
+
+Also filters can be run automatically before validation. Require `ActiveModel::Validations::Callbacks`
+
+```ruby
+class SingupForm
+  include ActiveModel::Model
+  include ActiveModel::Validations::Callbacks
+  include AttrFilters::ActiveModel
+
+  attr_accessor :user_name, :zip
+
+  validates :user_name, presence: true, filters: { trim: true, squeeze: true }
+  filters :zip, trim: true, numbers_only: true
+end
+
+form = SingupForm.new(user_name: "  Mike   Dou  ", zip: "12345abc")
+form.valid?
+form.user_name  # => "Mike Dou"
+form.zip        # => "12345"
 ```
 
 ## Available Filters

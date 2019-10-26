@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Anton Holovko", "Syndicode LLC"]
   spec.email         = ["anton.holovko.b@gmail.com", "info@syndicode.com"]
 
-  spec.summary       = "Light weight gem for filtering PORO attributes with zero dependencies."
-  spec.description   = "Light weight gem for filtering PORO attributes with zero dependencies."
+  spec.summary       = "Light weight gem for filtering PORO (Plain Old Ruby Objects) attributes with zero dependencies."
+  spec.description   = "Light weight gem for filtering PORO (Plain Old Ruby Objects) attributes with zero dependencies."
   spec.homepage      = "https://github.com/Syndicode/attr-filters"
   spec.license       = "MIT"
 
