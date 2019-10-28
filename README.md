@@ -2,13 +2,14 @@
 
 [![Build Status](https://travis-ci.com/Syndicode/attr-filters.svg?branch=master)](https://travis-ci.com/Syndicode/attr-filters)
 [![Gem Version](https://badge.fury.io/rb/attr_filters.svg)](https://badge.fury.io/rb/attr_filters)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters?ref=badge_shield)
 
 Light weight gem for filtering PORO (Plain Old Ruby Objects) attributes with zero dependencies.
 
 ## Description
 
 AttrFilters brings simple DSL for adding filters to your PORO attributes.<br>
-Simple way to integration with Rails validation.
+Easy to integrate with Rails validation.
 
 ## Requirements
   - Ruby >= 2.4
@@ -45,7 +46,7 @@ class SingupForm
 end
 ```
 
-And call `#filter!` method to apply filters for attributes values
+And call `#filter!` method to apply filters to attributes values
 
 
 ```ruby
@@ -125,7 +126,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/attr_filters. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Syndicode/attr_filters. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -133,7 +134,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the AttrFilters project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/attr_filters/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the AttrFilters project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Syndicode/attr_filters/blob/master/CODE_OF_CONDUCT.md).
 
 ## Authors
 
