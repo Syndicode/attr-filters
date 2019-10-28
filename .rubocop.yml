@@ -1,17 +1,23 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: false
+  Exclude:
+    - "bin/**/*"
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 Style/BlockDelimiters:
   Exclude:
     - "spec/**/*"
+Style/Documentation:
+  Enabled: false
 
 Metrics/LineLength:
   Max: 120
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+    - "attr_filters.gemspec"
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
-
-Documentation:
-  Enabled: false
