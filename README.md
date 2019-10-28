@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Syndicode/attr-filters.svg?branch=master)](https://travis-ci.com/Syndicode/attr-filters)
 [![Gem Version](https://badge.fury.io/rb/attr_filters.svg)](https://badge.fury.io/rb/attr_filters)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters?ref=badge_shield)
 
 Light weight gem for filtering PORO (Plain Old Ruby Objects) attributes with zero dependencies.
 
@@ -130,6 +131,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSyndicode%2Fattr-filters?ref=badge_large)
 
 ## Code of Conduct
 
