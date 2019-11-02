@@ -8,4 +8,10 @@ RSpec.describe AttrFilters::Filters::NumbersOnly do
 
     expect(filter.call("Mike 123 - Dou!")).to eq("123")
   end
+
+  it "should do nothing if invalid value" do
+    filter = AttrFilters::Filters::NumbersOnly.new
+
+    expect(filter.call(nil)).to eq(nil)
+  end
 end

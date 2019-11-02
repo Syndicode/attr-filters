@@ -14,6 +14,34 @@ RSpec.describe AttrFilters do
     end
   end
 
+  context "date filter" do
+    it "should call date filter without params" do
+      form_class = Struct.new(:birth_date) do
+        include AttrFilters
+
+        filters :birth_date, date: true
+      end
+      form = form_class.new("1988-10-22")
+
+      expect(AttrFilters::Filters::LIST[:date]).to receive(:filter).with("1988-10-22")
+
+      form.filter!
+    end
+
+    it "should call date filter with format parameter" do
+      form_class = Struct.new(:birth_date) do
+        include AttrFilters
+
+        filters :birth_date, date: "%m-%d-%Y"
+      end
+      form = form_class.new("10-22-1988")
+
+      expect(AttrFilters::Filters::LIST[:date]).to receive(:filter).with("10-22-1988", "%m-%d-%Y")
+
+      form.filter!
+    end
+  end
+
   context "trim filter" do
     it "should call trim filter" do
       form_class = Struct.new(:user_name) do
@@ -23,7 +51,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("  Mike Dou  ")
 
-      expect(AttrFilters::Filters::LIST[:trim]).to receive(:call).with("  Mike Dou  ")
+      expect(AttrFilters::Filters::LIST[:trim]).to receive(:filter).with("  Mike Dou  ")
 
       form.filter!
     end
@@ -38,7 +66,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("mike dou")
 
-      expect(AttrFilters::Filters::LIST[:capitalize]).to receive(:call).with("mike dou")
+      expect(AttrFilters::Filters::LIST[:capitalize]).to receive(:filter).with("mike dou")
 
       form.filter!
     end
@@ -53,7 +81,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("Mike  Dou")
 
-      expect(AttrFilters::Filters::LIST[:squeeze]).to receive(:call).with("Mike  Dou")
+      expect(AttrFilters::Filters::LIST[:squeeze]).to receive(:filter).with("Mike  Dou")
 
       form.filter!
     end
@@ -68,7 +96,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("Mike 123 Dou")
 
-      expect(AttrFilters::Filters::LIST[:letters_only]).to receive(:call).with("Mike 123 Dou")
+      expect(AttrFilters::Filters::LIST[:letters_only]).to receive(:filter).with("Mike 123 Dou")
 
       form.filter!
     end
@@ -83,7 +111,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("Mike 123 Dou")
 
-      expect(AttrFilters::Filters::LIST[:numbers_only]).to receive(:call).with("Mike 123 Dou")
+      expect(AttrFilters::Filters::LIST[:numbers_only]).to receive(:filter).with("Mike 123 Dou")
 
       form.filter!
     end
@@ -98,7 +126,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("Mike Dou")
 
-      expect(AttrFilters::Filters::LIST[:upcase]).to receive(:call).with("Mike Dou")
+      expect(AttrFilters::Filters::LIST[:upcase]).to receive(:filter).with("Mike Dou")
 
       form.filter!
     end
@@ -113,7 +141,7 @@ RSpec.describe AttrFilters do
       end
       form = form_class.new("Mike Dou")
 
-      expect(AttrFilters::Filters::LIST[:downcase]).to receive(:call).with("Mike Dou")
+      expect(AttrFilters::Filters::LIST[:downcase]).to receive(:filter).with("Mike Dou")
 
       form.filter!
     end

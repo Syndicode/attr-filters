@@ -20,9 +20,9 @@ module AttrFilters
     private
 
       def register_filters(filters, attrs)
-        filters.each_pair do |filter, _options|
-          @_registered_filters[filter] ||= Set.new
-          @_registered_filters[filter].merge(attrs)
+        filters.each_pair do |filter, options|
+          @_registered_filters[filter] ||= { attributes: Set.new, options: options }
+          @_registered_filters[filter][:attributes].merge(attrs)
         end
       end
 

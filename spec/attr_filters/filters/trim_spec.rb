@@ -20,4 +20,10 @@ RSpec.describe AttrFilters::Filters::Trim do
 
     expect(filter.call("  Mike Dou  ")).to eq("Mike Dou")
   end
+
+  it "should do nothing if invalid value" do
+    filter = AttrFilters::Filters::Trim.new
+
+    expect(filter.call(nil)).to eq(nil)
+  end
 end
