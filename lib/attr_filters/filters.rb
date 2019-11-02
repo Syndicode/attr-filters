@@ -11,6 +11,7 @@ module AttrFilters
     autoload :Squeeze, "attr_filters/filters/squeeze"
     autoload :LettersOnly, "attr_filters/filters/letters_only"
     autoload :NumbersOnly, "attr_filters/filters/numbers_only"
+    autoload :Date, "attr_filters/filters/date"
 
     LIST = {
       trim: Trim.new,
@@ -19,7 +20,8 @@ module AttrFilters
       numbers_only: NumbersOnly.new,
       letters_only: LettersOnly.new,
       squeeze: Squeeze.new,
-      capitalize: Capitalize.new
+      capitalize: Capitalize.new,
+      date: Date.new
     }.freeze
   end
 end
