@@ -8,4 +8,10 @@ RSpec.describe AttrFilters::Filters::Downcase do
 
     expect(filter.call("Mike Dou")).to eq("mike dou")
   end
+
+  it "should do nothing if invalid value" do
+    filter = AttrFilters::Filters::Downcase.new
+
+    expect(filter.call(nil)).to eq(nil)
+  end
 end

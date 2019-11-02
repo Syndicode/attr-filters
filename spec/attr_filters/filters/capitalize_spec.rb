@@ -8,4 +8,10 @@ RSpec.describe AttrFilters::Filters::Capitalize do
 
     expect(filter.call("mike dou")).to eq("Mike dou")
   end
+
+  it "should do nothing if invalid value" do
+    filter = AttrFilters::Filters::Capitalize.new
+
+    expect(filter.call(nil)).to eq(nil)
+  end
 end
