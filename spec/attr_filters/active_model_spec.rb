@@ -50,7 +50,23 @@ RSpec.describe AttrFilters::ActiveModel, if: active_model? do
 
       user = form_class.new("Mike Dou")
 
-      expect(AttrFilters::Filters::LIST[:trim]).to receive(:call).with("Mike Dou")
+      expect(AttrFilters::Filters::LIST[:trim]).to receive(:filter).with("Mike Dou")
+
+      user.valid?
+    end
+
+    it "should call date filter with options" do
+      form_class = Struct.new(:user_name) do
+        include ActiveModel::Validations
+        include ActiveModel::Validations::Callbacks
+        include AttrFilters::ActiveModel
+
+        validates :user_name, presence: true, filters: { date: "%m-%d-%Y" }
+      end
+
+      user = form_class.new("Mike Dou")
+
+      expect(AttrFilters::Filters::LIST[:date]).to receive(:filter).with("Mike Dou", "%m-%d-%Y")
 
       user.valid?
     end

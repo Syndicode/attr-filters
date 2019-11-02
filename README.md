@@ -39,11 +39,13 @@ You can add filters like that:
 class SingupForm
   include AttrFilters
 
-  attr_accessor :email, :first_name, :last_name, :zip
+  attr_accessor :email, :first_name, :last_name, :zip, :birth_date, :due_date
 
   filters :email, trim: true, downcase: true
   filters :first_name, :last_name, trim: true, letters_only: true
   filters :zip, trim: true, numbers_only: true
+  filters :birth_date, date: true
+  filters :due_date, date: "%m-%d-%Y"
 end
 ```
 
@@ -57,6 +59,8 @@ form.email      = "  mike.dou@example.com "
 form.first_name = "Mike 123"
 form.last_name  = " Dou"
 form.zip        = "abc12345"
+form.birth_date = "2019-11-02"
+form.due_date   = "11-02-2019"
 
 form.filter!
 
@@ -64,6 +68,8 @@ form.email        # => "mike.dou@example.com"
 form.first_name   # => "Mike"
 form.last_name    # => "Dou"
 form.zip          # => "12345"
+form.birth_date   # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
+form.due_date     # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
 ```
 
 ## Integration with Rails
@@ -117,13 +123,9 @@ form.zip        # => "12345"
  - `squeeze` - removes duplicating whitespaces
  - `numbers_only` - removes non digits characters
  - `letters_only` - removes non letter characters
+ - `date` - parse string to date using specified format. Default format is **`%Y-%m-%d`**.
 
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
