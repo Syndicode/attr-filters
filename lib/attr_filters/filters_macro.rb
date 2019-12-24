@@ -29,8 +29,14 @@ module AttrFilters
       def check_attributes!(attrs)
         attrs.each do |attr|
           setter = "#{attr}="
-          unknown_attribute!(setter) unless method_defined?(setter)
+          unknown_attribute!(setter) unless writer_exists?(setter)
         end
+      end
+
+      def writer_exists?(setter)
+        return attribute_method?(setter) if respond_to?(:attribute_method?)
+
+        method_defined?(setter)
       end
 
       def check_filters!(filters)
