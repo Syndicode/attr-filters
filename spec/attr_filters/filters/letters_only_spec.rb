@@ -14,4 +14,24 @@ RSpec.describe AttrFilters::Filters::LettersOnly do
 
     expect(filter.call(nil)).to eq(nil)
   end
+
+  context "when :expect option used" do
+    context "with one excepting character" do
+      it "should not remove special character" do
+        filter = described_class.new
+
+        expect(filter.call("O'Connor", except: %w['])).to eq("O'Connor")
+      end
+    end
+
+    context "with several excepting characters" do
+      it "should not remove special characters" do
+        filter = described_class.new
+
+        expect(filter.call("Mi'ke 123 - Dou!", except: %w[' - !])).to(
+          eq("Mi'ke - Dou!")
+        )
+      end
+    end
+  end
 end
