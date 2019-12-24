@@ -100,6 +100,23 @@ RSpec.describe AttrFilters do
 
       form.filter!
     end
+
+    context "with except option passed" do
+      it "should call letters_only filter" do
+        form_class = Struct.new(:user_name) do
+          include AttrFilters
+
+          filters :user_name, letters_only: { except: %w[' - !] }
+        end
+        form = form_class.new("Mike 123 Dou")
+
+        expect(AttrFilters::Filters::LIST[:letters_only]).to(
+          receive(:filter).with("Mike 123 Dou", except: %w[' - !])
+        )
+
+        form.filter!
+      end
+    end
   end
 
   context "numbers_only filter" do
