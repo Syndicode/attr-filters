@@ -122,7 +122,7 @@ form.zip        # => "12345"
  - `capitalize` - upcases first letter and lowercase others
  - `squeeze` - removes duplicating whitespaces
  - `numbers_only` - removes non digits characters
- - `letters_only` - removes non letter characters
+ - `letters_only` - removes non letter characters, accept `except` options as `filters first_name: { except: %w[' -] }`
  - `date` - parse string to date using specified format. Default format is **`%Y-%m-%d`**.
 
 
