@@ -72,6 +72,44 @@ form.birth_date   # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
 form.due_date     # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
 ```
 
+> **NOTE:** Order of filters **MATTERS**!
+
+Just look at some examples below:
+
+```ruby
+class SignupForm
+  attr_accessor :name
+
+  filters :name, letters_only: true, trim: true
+end
+
+form = SingupForm.new
+form.name = " Mike 123 "
+
+form.filter!
+
+form.name # => "Mike"
+```
+
+Now if we will change filters order we will have different result:
+
+```ruby
+class SignupForm
+  attr_accessor :name
+
+  filters :name, trim: true, letters_only: true
+end
+
+form = SingupForm.new
+form.name = " Mike 123 "
+
+form.filter!
+
+form.name # => "Mike "
+```
+
+In the second example the `trim` filter runs firs and then the `letters_only`
+
 ## Integration with Rails
 ### Requirements
   - ActiveModel >= 4.2.0
