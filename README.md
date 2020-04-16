@@ -72,7 +72,8 @@ form.birth_date   # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
 form.due_date     # => #<Date: 2019-11-02 ((2458790j,0s,0n),+0s,2299161j)>
 ```
 
-> **NOTE:** Order of filters **MATTERS**!
+### Filters order
+Order of specified filters **MATTERS**!
 
 Just look at some examples below:
 
@@ -108,7 +109,7 @@ form.filter!
 form.name # => "Mike "
 ```
 
-In the second example the `trim` filter runs firs and then the `letters_only`
+In the second example the `trim` filter runs first removing leading and trailing spaces, and then the `letters_only` filter removes the `"123"` substring.
 
 ## Integration with Rails
 ### Requirements
